@@ -1,0 +1,706 @@
+
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>Humanitarian Data Exchange</title>
+	<meta name="description" content="Humanitarian Data Exchange">
+	<meta name="viewport" content="width=device-width">
+	<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600" rel="stylesheet" type="text/css" />
+	<link rel="shortcut icon" href="http://docs.hdx.rwlabs.org//wp-content/uploads/logo-icon1.png"/> 
+	<link rel="apple-touch-icon-precomposed" href="http://docs.hdx.rwlabs.org/wp-content/themes/acute/assets/images/apple-touch-icon.png"/>
+
+	<link href="styles.css" rel="stylesheet">
+	<script type="text/javascript" src="scripts/jquery.min.js"></script>
+	<script type="text/javascript" src="scripts/TweenMax.min.js"></script>
+	<script type="text/javascript" src="scripts/jquery.history.js"></script>
+	<script type="text/javascript" src="scripts/kalfinSlides.js"></script>
+	<script type="text/javascript">
+		$(function()
+		{
+			$(window).load(function()
+			{
+				$('#singleman').changeWidthHeight({
+				contWidth: '.man',
+				contHeight: '',
+				subWidth: 50
+				});
+				$('#factory-image').changeWidthHeight({
+				contWidth: '',
+				contHeight: '.eco'
+				});
+				$('#monitor').changeWidthHeight({
+				contWidth: '.bman',
+				contHeight: '.bman',
+				addWidth: 0,
+				subWidth: 14,
+				addHeight: 0,
+				subHeight: 0
+				});
+			});
+			/////////////////////////////////////////////////////////////
+			var $infoGraphic = $("#infographic");
+
+			function triggerRepaint(){
+				document.getElementById("header").style.webkitTransform = 'scale(1)';
+			}
+
+			//SLIDE 1
+			var $slide1 = $("#slide-1");
+			var s1t = new TimelineMax({paused: true});
+			s1t.from( $slide1.find(".centered"), 0.3, {autoAlpha:0} );
+			s1t.from( $slide1.find(".slide1-logo"), 1.2, {alpha: 0} );
+			s1t.from( $slide1.find("h1"), 1.2, {alpha: 0} );
+			s1t.from( $slide1.find(".scroll-down"), 0.4, {alpha: 0} );
+			s1t.from( $slide1.find(".mouse"), 0.4, {alpha: 0} );
+
+			//SLIDE 2
+			var $slide2 = $("#slide-2");
+			var s2t = new TimelineMax({paused: true});
+			s2t.from( $slide2.find(".centered"), 0.3, {autoAlpha:0} );
+			s2t.from( $slide2.find(".videoWrapper"), 0.4, {autoAlpha:0} );
+
+			//SLIDE 3
+			var $slide3 = $("#slide-3");
+			var $manImg = $slide3.find(".man img");
+			var manCounter = {
+				man: 0
+			}
+			var $count = $slide3.find("span.count");
+			var $bManContainer = $slide3.find(".bman-container");
+			var $bMan = $slide3.find(".bman");
+			var s3t = new TimelineMax({paused: true});
+			s3t.call(function(){
+				s3t.set(manCounter, {man:0});
+				TweenMax.set( $bMan.find("img"), {left: 0} );
+				$count.text("0");
+			});
+			s3t.from( $slide3.find(".centered"), 0.3, {autoAlpha:0} );
+			s3t.from( $slide3.find(".text-container"), 0.4, {autoAlpha:0} );
+			s3t.from( $slide3.find(".waitingroom"), 0.6, {autoAlpha:0} );
+			s3t.from( $slide3.find(".text-container2"), 1.0, {autoAlpha:0} );
+			s3t.from( $bManContainer, 1, {autoAlpha:0}, "manAnim" );
+			s3t.add( new TimelineMax({repeat:-1, repeatDelay:3, onStart: triggerRepaint}).to( $bMan.find("img"), 1, {left: "-100%"}  ) , "manAnim" );
+			s3t.add( new TimelineMax({repeat:-1, repeatDelay:3, onStart: triggerRepaint}).add( TweenMax.allFromTo( $manImg, 1, {left:0}, {left:"-100%"} ) ) , "manAnim");
+			s3t.to( manCounter, 6, {man:10000, onUpdate: function(){
+				$count.text( parseInt(manCounter.man) );
+			}, onComplete: function(){
+				$count.text( "10 000" );
+			}}, "manAnim" );
+			s3t.from( $slide3.find(".bottom-line"), 1.2, {autoAlpha:0}, "manAnim+=2" );
+
+			//SLIDE 4
+			var $slide4 = $("#slide-4");
+			var $count1 = $slide4.find("span.count1");
+			var manCounter1 = {
+				man: 0
+			}
+			var $count2 = $slide4.find("span.count2");
+			var manCounter2 = {
+				man: 0
+			}
+			var $count3 = $slide4.find("span.count3");
+			var manCounter3 = {
+				man: 0
+			}
+			var s4t = new TimelineMax({paused: true});
+			s4t.from( $slide4.find(".centered"), 0.3, {autoAlpha:0} );
+			s4t.from( $slide4.find(".text-container"), 0.4, {autoAlpha:0} );
+			s4t.from( $slide4.find(".item1"), 1, {x: -100,autoAlpha:0} );
+			var $count1 = $slide4.find("span.count1");
+			s4t.call(function(){
+				s4t.set(manCounter, {man:0});
+				$count1.text("0");
+			});
+			s4t.to( manCounter, 1, {man:20, onUpdate: function(){
+				$count1.text( parseInt(manCounter.man) );
+			}, onComplete: function(){
+				$count1.text( "20" );
+			}}, "manAnim1" );
+
+			s4t.from( $slide4.find(".item2"), 1, {x: -100,autoAlpha:0} );
+			var $count2 = $slide4.find("span.count2");
+			s4t.call(function(){
+				s4t.set(manCounter2, {man:0});
+				$count2.text("0");
+			});
+			s4t.to( manCounter2, 1, {man:243, onUpdate: function(){
+				$count2.text( parseInt(manCounter2.man) );
+			}, onComplete: function(){
+				$count2.text( "243" );
+			}}, "manAnim2" );
+
+			s4t.from( $slide4.find(".item3"), 1, {x: -100,autoAlpha:0} );
+			var $count3 = $slide4.find("span.count3");
+			s4t.call(function(){
+				s4t.set(manCounter3, {man:0});
+				$count3.text("0");
+			});
+			s4t.to( manCounter3, 1, {man:1200, onUpdate: function(){
+				$count3.text( parseInt(manCounter3.man) );
+			}, onComplete: function(){
+				$count3.text( "1,200" );
+			}}, "manAnim3" );
+
+			//SLIDE 5
+			var $slide5 = $("#slide-5");
+			var $coins = $slide5.find(".coins img");
+			var $coinsData = $slide5.find(".coins-data");
+			var $pipe = $slide5.find(".pipe img");
+			var s5t = new TimelineMax({paused: true});
+			s5t.call( function(){
+				TweenMax.set($coins, {autoAlpha:0, x:-10});
+				TweenMax.set( $pipe, {bottom:"-150%"} );
+				TweenMax.set($coinsData, {autoAlpha:0, y:20})
+			} );
+			s5t.from( $slide5.find(".centered"), 0.3, {autoAlpha:0} );
+			s5t.from( $slide5.find(".pic-container"), 0.5, {scale: 2,autoAlpha:0} );
+			s5t.from( $slide5.find(".pic-container2"), 0.5, {scale: 2,autoAlpha:0} );
+			s5t.from( $slide5.find(".pic-container3"), 0.5, {scale: 2,autoAlpha:0} );
+			s5t.from( $slide5.find(".text1"), 0.8, {autoAlpha:0} );
+			s5t.from( $slide5.find(".text2"), 1, {autoAlpha:0} );
+			s5t.from( $slide5.find(".coin-diagram"), 0.4, {autoAlpha:0} );
+			s5t.add( TweenMax.staggerTo( $coins, 0.5, {autoAlpha:1, x:0}, 0.3), "coinsAnim" );
+			s5t.to( $pipe, 0.9, {bottom:"-10%"} );
+			s5t.to( $coinsData, 0.5, {autoAlpha:1, y:0} );
+
+			//SLIDE 6
+			var $slide6 = $("#slide-6");
+			var $sixring = $slide6.find(".sixring");
+			var $sixinner1 = $slide6.find(".sixinner1");
+
+			var s6t = new TimelineMax({paused: true});
+			s6t.call(function(){
+				TweenMax.set($sixring, {rotation:0});
+			});
+			s6t.from( $slide6.find(".centered"), 0.3, {autoAlpha:0} );
+			s6t.from( $slide6.find(".text-container"), 0.4, {autoAlpha:0} );
+			s6t.from( $slide6.find(".pic-container"), 0.7, {autoAlpha:0} );
+
+//create nested timeline
+child1 = new TimelineMax({repeat: -1});
+child1.fromTo($sixinner1, 5, {rotation:0}, {rotation:-359, ease:Linear.easeNone});
+
+
+			s6t.add(child1),( new TimelineMax({repeat: -1}).fromTo($sixring, 25, {rotation:0}, {rotation:359, ease:Linear.easeNone}) );
+
+//var main, child1, child2;
+
+//create nested timeline
+//child1 = new TimelineMax();
+//child1.to("#box1", 1, {rotation:360})
+//.to("#box1", 1, {scale:2, top:200})
+
+//main = new TimelineMax({repeat:2, repeatDelay:0.5, yoyo:true});
+//main.to("#box0", 1, {top:100})
+     //add nested timeline
+//    .add(child1)
+//    .to("#box0", 1, {left:300})
+
+
+			//SLIDE 7
+			var $slide7 = $("#slide-7");
+			var $ecopipe1 = $slide7.find(".ecopipe1");
+			var $ecopipe2 = $slide7.find(".ecopipe2");
+			var $ecoLabel = $slide7.find(".ecolabel");
+			var s7t = new TimelineMax({paused: true, onStart: triggerRepaint});
+			s7t.call(function(){
+				TweenMax.set( $ecopipe1.find("span"), {width:0} );
+				TweenMax.set( $ecopipe1.find("b.slide7-mn"), {alpha:0} );
+				TweenMax.set( $ecopipe2.find("span"), {width:0} );
+				TweenMax.set( $ecopipe2.find("b.slide7-mn"), {alpha:0} );
+				TweenMax.set( $ecoLabel, {alpha:0} );
+			});
+			s7t.from( $slide7.find(".centered"), 0.3, {autoAlpha:0} );
+			s7t.from( $slide7.find(".text-container"), 0.4, {autoAlpha:0} );
+			s7t.from( $slide7.find(".eco"), 0.7, {autoAlpha:0} );
+			s7t.to( $ecopipe2.find("span"), 1, {width:"20%"} );
+			s7t.to( $ecopipe2.find("b.slide7-mn"), 0.4, {alpha:1} );
+			s7t.to( $ecopipe1.find("span"), 1.6, {width:"80%"} );
+			s7t.to( $ecopipe1.find("b.slide7-mn"), 0.4, {alpha:1} );
+			s7t.to( $ecoLabel, 0.4, {alpha:1} );
+
+
+			//SLIDE 8
+			var $slide8 = $("#slide-8");
+			var $packet1 = $slide8.find(".packet1");
+			var $packet2 = $slide8.find(".packet2");
+			var $packet3 = $slide8.find(".packet3");
+
+			var s8t = new TimelineMax({paused: true});
+			s8t.call(function(){
+				TweenMax.set($packet1, {left:"45%",top:"22.5%"});
+				TweenMax.set($packet2, {left:"45%",top:"22.5%"});
+				TweenMax.set($packet3, {left:"45%",top:"22.5%"});
+			});
+			s8t.from( $slide8.find(".centered"), 0.3, {autoAlpha:0} );
+			s8t.from( $slide8.find(".text-container"), 0.4, {autoAlpha:0} );
+			s8t.from( $slide8.find(".pic-container"), 0.6, {autoAlpha:0} );
+
+			s8t.from( $slide8.find(".contact1"), 0.4, {scale: .5,autoAlpha:0} );
+			s8t.from( $slide8.find(".contact2"), 0.4, {scale: .5,autoAlpha:0} );
+			s8t.from( $slide8.find(".contact3"), 0.4, {scale: .5,autoAlpha:0} );
+
+
+child2 = new TimelineMax({repeat: -1, repeatDelay:0.2, yoyo:true});
+child2.fromTo($packet2, 1.5, {left: "45%", top: "22.5%", easing: Linear.easeNone}, {delay: 0.2, left:"79%", top: "66%", easing:Linear.easeNone});
+
+child3 = new TimelineMax({repeat: -1, repeatDelay:0.2, yoyo:true});
+child3.fromTo($packet3, 1.75, {left: "45%", top: "22.5%", easing: Linear.easeNone}, {delay: 0.2, left:"45%", top: "80%", easing:Linear.easeNone});
+			
+			
+			//s9t.to($diploma, 0.4, {left:"10%"});
+			s8t.add(child2),(child3),( new TimelineMax({repeat: -1, repeatDelay:0.2, yoyo:true}).fromTo($packet1, 2, {left: "45%", top: "22.5%", easing: Linear.easeNone}, {delay: 0.2, left:"10%", top: "66%", easing:Linear.easeNone}) );
+			//s9t.to($diploma, 0.4, {left:"30%"});
+
+
+
+			//SLIDE 9
+			var $slide9 = $("#slide-9");
+			var s9t = new TimelineMax({paused: true});
+			s9t.from( $slide9.find(".centered"), 0.3, {autoAlpha:0} );
+			s9t.from( $slide9.find(".text-container"), 0.4, {autoAlpha:0} );
+
+			//SLIDE 10
+			var $slide10 = $("#slide-10");
+			var $diploma = $slide10.find(".diploma");
+			var s10t = new TimelineMax({paused: true});
+			s10t.call(function(){
+				TweenMax.set($diploma, {left:"10%"});
+			});
+			s10t.from( $slide10.find(".centered"), 0.3, {autoAlpha:0} );
+			s10t.from( $slide10.find(".text-container"), 0.4, {autoAlpha:0} );
+			s10t.from( $slide10.find(".pic-container"), 0.6, {autoAlpha:0} );
+
+			s10t.from( $slide10.find(".diploma-container"), 0.6, {autoAlpha:0} );
+			//s9t.to($diploma, 0.4, {left:"10%"});
+			s10t.add( new TimelineMax({repeat: -1}).fromTo($diploma, 15, {rotation:0}, {rotation:359, ease:Linear.easeNone}) );
+			//s9t.to($diploma, 0.4, {left:"30%"});
+
+
+			//SLIDE 11
+			var $slide11 = $("#slide-11");
+			$mail = $slide11.find(".mail");
+			var s11t = new TimelineMax({paused: true});
+			s11t.call(function(){
+				TweenMax.set($mail, {left:"15%", bottom:"1%", rotation:0, autoAlpha:1});
+			});
+			s11t.from( $slide11.find(".centered"), 0.3, {autoAlpha:0} );
+			s11t.from( $slide11.find(".col1"), 0.4, {autoAlpha:0} );
+			s11t.from( $slide11.find(".col2"), 0.6, {autoAlpha:0} );
+			s11t.from( $slide11.find(".mail-container"), 1, {autoAlpha:0} );
+			s11t.to( $mail, 1.8, {left:"60%"} );
+			s11t.to( $mail, 0.8, {bottom:"-35%", rotation:"24%", autoAlpha:0} );
+			s11t.call(function(){
+				TweenMax.set($mail, {left:"15%", bottom:"1%", rotation:0});
+			});
+			s11t.to( $mail, 0.32, { autoAlpha:1} );
+			s11t.to( $mail, 1.8, {left:"60%"} );
+			s11t.to( $mail, 0.8, {bottom:"-40%", rotation:"-56%", autoAlpha:0} );
+			s11t.call(function(){
+				TweenMax.set($mail, {left:"15%", bottom:"1%", rotation:0});
+			});
+			s11t.to( $mail, 0.3, { autoAlpha:1} );
+			s11t.to( $mail, 2.5, {left:"80%"} );
+			s11t.to( $mail, 0.3, { autoAlpha:0} );
+
+
+			//SLIDE 12
+			var $slide12 = $("#slide-12");
+			var $baloon = $slide12.find(".baloon");
+			var $dualPipe1 = $slide12.find(".dual-pipe1");
+			var $dualPipe2 = $slide12.find(".dual-pipe2");
+			var $dualYears = $slide12.find(".dual-year");
+
+			var s12t = new TimelineMax({paused: true});
+			s12t.call(function(){
+				TweenMax.set( $baloon, {autoAlpha:0} );
+				TweenMax.set( $dualPipe1, {width:0} );
+				TweenMax.set( $dualPipe2, {width:0} );
+				TweenMax.set( $dualYears, {autoAlpha:0} )
+			});
+			s12t.from( $slide12.find(".centered"), 0.3, {autoAlpha:0} );
+			s12t.from( $slide12.find(".col2"), 0.4, {autoAlpha:0} );
+			s12t.from( $slide12.find(".col1"), 0.8, {autoAlpha:0} );
+			s12t.to( $dualPipe1, 1.2, {width:"30%"} );
+			s12t.to( $baloon, 0.9, {autoAlpha:1});
+			s12t.to( $dualPipe2, 1.2, {width:"80%", delay:0.5});
+			s12t.to( $dualYears, 0.9, {autoAlpha:1});
+
+
+			//SLIDE 13
+			var $slide13 = $("#slide-13");
+			var s13t = new TimelineMax({paused: true});
+			s13t.from( $slide13.find(".centered"), 0.3, {autoAlpha:0} );
+			s13t.from( $slide13.find(".photo1-container"), 0.1, {autoAlpha:0} );
+			s13t.from( $slide13.find(".photo1"), 0.2, {x: -100,autoAlpha:0} );
+			s13t.from( $slide13.find(".photo2-container"), 0.1, {autoAlpha:0} );
+			s13t.from( $slide13.find(".photo2"), 0.2, {x: 100,autoAlpha:0} );
+			s13t.from( $slide13.find(".photo3-container"), 0.1, {autoAlpha:0} );
+			s13t.from( $slide13.find(".photo3"), 0.2, {x: 100,autoAlpha:0} );
+			s13t.from( $slide13.find(".photo4-container"), 0.1, {autoAlpha:0} );
+			s13t.from( $slide13.find(".photo4"), 0.2, {x: -100,autoAlpha:0} );
+			s13t.from( $slide13.find(".photo5-container"), 0.1, {autoAlpha:0} );
+			s13t.from( $slide13.find(".photo5"), 0.2, {x: 100,autoAlpha:0} );
+			s13t.from( $slide13.find(".photo6-container"), 0.1, {autoAlpha:0} );
+			s13t.from( $slide13.find(".photo6"), 0.2, {x: 100,autoAlpha:0} );
+			s13t.from( $slide13.find(".photo7-container"), 0.1, {autoAlpha:0} );
+			s13t.from( $slide13.find(".photo7"), 0.2, {x: -100,autoAlpha:0} );
+			s13t.from( $slide13.find(".photo8-container"), 0.1, {autoAlpha:0} );
+			s13t.from( $slide13.find(".photo8"), 0.2, {x: 100,autoAlpha:0} );
+
+
+			//SLIDE 14
+			var s14t = new TimelineMax({paused: true});
+			var $slide14 = $("#slide-14");
+			var s14t = new TimelineMax({paused: true});
+			s14t.from( $slide14.find(".heading"), 0.3, {autoAlpha:0} );
+			s14t.from( $slide14.find(".col1"), 0.6, {autoAlpha:0} );
+			s14t.from( $slide14.find(".col1a"), 0.6, {autoAlpha:0} );
+			s14t.from( $slide14.find(".col2a"), 0.6, {autoAlpha:0} );
+			s14t.from( $slide14.find(".col3a"), 0.6, {autoAlpha:0} );
+			s14t.from( $slide14.find(".col2b"), 0.6, {autoAlpha:0} );
+			s14t.from( $slide14.find(".col1b"), 0.6, {autoAlpha:0} );
+
+			$infoGraphic.kalfinSlides({
+				useEffects  : true,
+				slideTime   : 1.5,
+				parallaxTimeStagger : 0,
+				titleDevider: " | ",
+				animations  : [
+					s1t, s2t, s3t, s4t, s5t, s6t, s7t, s8t, s9t, s10t, s11t, s12t, s13t, s14t
+				]
+			});
+
+		});
+
+
+	</script>
+</head>
+<body>
+<!--[if lt IE 8]>
+	<p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+<![endif]-->
+<div id="wrapper">
+	<div id="header"><div id="header-inner"><a href="http://docs.hdx.rwlabs.org/"><img src="img/header.png" class="biglogo" alt=""></a></div></div>
+	<div id="navigation"></div>
+	<div id="infographic">
+
+		<div id="slide-1" class="infographic-slide fullscreen-background" data-deepilink="home" data-title="Humanitarian Data Exchange">
+			<div class="centered"
+>				<div class="slide-1-box">
+					<div class="slide1-logo">
+						<img src="img/hdx_logo_intro.png" class="responsive">
+					</div>
+					<h1>Introducing the Humanitarian Data Exchange</h1>
+					<div class="scroll-down go-to-next"></div>
+				</div>
+
+				<img src="img/instructions.png" class="mouse">
+			</div>
+		</div>
+		<!-- -------------------------------------------------------------------------- -->
+		<div id="slide-2" class="infographic-slide fullscreen-background" data-deepilink="slide-2" data-title="HDX">
+			<div class="centered">
+				<div class="holder">
+
+				<div class="videoWrapper">
+					<iframe src="http://player.vimeo.com/video/100313924" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+				</div>
+				
+				</div>
+			</div>
+		</div>
+		<!-- -------------------------------------------------------------------------- -->
+		<div id="slide-3" class="infographic-slide fullscreen-background" data-deepilink="slide-3" data-title="Our goal">
+			<div class="centered">
+				<div class="holder">
+					<div class="col1 text-container">
+						<p>HDX aims to make humanitarian data easy to find and use for analysis.</p>
+					</div>
+
+				</div>
+				<div class="holder waitingroom">
+					<div class="people">
+						<div class="man"><img src="img/slide3_man.png" class="single-man" id="singleman"></div><div class="man"><img src="img/slide3_man.png"></div><div class="man"><img src="img/slide3_man.png"></div><div class="man"><img src="img/slide3_man.png"></div><div class="man"><img src="img/slide3_man.png"></div><div class="man"><img src="img/slide3_man.png"></div><div class="man"><img src="img/slide3_man.png"></div><div class="man"><img src="img/slide3_man.png"></div><div class="man"><img src="img/slide3_man.png"></div><div class="man"><img src="img/slide3_man.png"></div><div class="man"><img src="img/slide3_man.png"></div><div class="man"><img src="img/slide3_man.png"></div><div class="man"><img src="img/slide3_man.png"></div><div class="man"><img src="img/slide3_man.png"></div><div class="man"><img src="img/slide3_man.png"></div><div class="man"><img src="img/slide3_man.png"></div><div class="man"><img src="img/slide3_man.png"></div><div class="man"><img src="img/slide3_man.png"></div><div class="man"><img src="img/slide3_man.png"></div><div class="man"><img src="img/slide3_man.png"></div><div class="man"><img src="img/slide3_man.png"></div><div class="man"><img src="img/slide3_man.png"></div><div class="man"><img src="img/slide3_man.png"></div><div class="man"><img src="img/slide3_man.png"></div><div class="man"><img src="img/slide3_man.png"></div><div class="man"><img src="img/slide3_man.png"></div><div class="man"><img src="img/slide3_man.png"></div><div class="man"><img src="img/slide3_man.png"></div><div class="man"><img src="img/slide3_man.png"></div><div class="man"><img src="img/slide3_man.png"></div><div class="man"><img src="img/slide3_man.png"></div><div class="man"><img src="img/slide3_man.png"></div><div class="man"><img src="img/slide3_man.png"></div>
+						</div>
+					<div class="monitor"><img src="img/slide3_monitor.png" class="responsive-h" id="monitor"></div>
+					<div class="bman-container"><div class="bman"><img src="img/slide3_bman.png" id="bman"></div></div>
+				</div>
+			</div>
+		</div>
+		<!-- -------------------------------------------------------------------------- -->
+		<div id="slide-4" class="infographic-slide fullscreen-background" data-deepilink="slide-4" data-title="HDX so far">
+			<div class="centered">
+				<div class="heading">
+					<h2>So far, the HDX includes ...</h2>
+				</div>
+				<div class="holder">
+					<div class="text-container">
+						<ul class="list">
+						<li class="item1">
+							<div class="pic-container"><img src="img/slide4_icon1.png" class="responsive"></div>
+							<p><span class="count1"> </span> official sources</p>
+						</li>
+						<li class="item2">
+							<div class="pic-container"><img src="img/slide4_icon2.png" class="responsive"></div>
+							<p><span class="count2"> </span> countries + territories</p>
+						</li>
+						<li class="item3">
+							<div class="pic-container"><img src="img/slide4_icon3.png" class="responsive"></div>
+							<p><span class="count3"> </span> datasets</p>
+						</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- -------------------------------------------------------------------------- -->
+		<div id="slide-5" class="infographic-slide fullscreen-background" data-deepilink="slide-5" data-title="Find, contribute and visualize">
+			<div class="centered">
+				<div class="heading">
+					<h2>Find, contribute and visualize</h2>
+				</div>
+				<div class="holder">
+					<div class="pic-container">
+						<img src="img/feature_icon_1.png" class="responsive">
+					</div>
+					<div class="pic-container2">
+						<img src="img/feature_icon_2.png" class="responsive">
+					</div>
+					<div class="pic-container3">
+						<img src="img/feature_icon_3.png" class="responsive">
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- -------------------------------------------------------------------------- -->
+		<div id="slide-6" class="infographic-slide fullscreen-background" data-deepilink="slide-6" data-title="Find">
+			<div class="centered">
+				<div class="heading">
+					<h2>Find</h2>
+				</div>
+				<div class="holder">
+					<div class="col1 text-container">
+						<p>Search for data by country, organization, date and keywords.</p>
+					</div>
+					<div class="col2 pic-container">
+						<img src="img/slide6-find-back.png" class="responsive">
+						<div class="sixring"><img src="img/slide6-ring.png" class="responsive">
+							<div class="sixinner1"><img src="img/slide6_eye.png" class="responsive"></div>
+						</div>
+						
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<!-- -------------------------------------------------------------------------- -->
+		<div id="slide-7" class="infographic-slide fullscreen-background" data-deepilink="slide-7" data-title="Find data">
+			<div class="centered">
+				<div class="holder">
+					<div class="videoWrapper">
+						<iframe src="http://player.vimeo.com/video/85967559" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- -------------------------------------------------------------------------- -->
+		<div id="slide-8" class="infographic-slide fullscreen-background" data-deepilink="slide-8" data-title="Contribute">
+			<div class="centered">
+				<div class="heading">
+					<h2>Contribute</h2>
+				</div>
+				<div class="holder">
+					<div class="col1 text-container">
+						<p>Add your data by uploading spreadsheets or connecting systems.</p>
+					</div>
+
+	
+					<div class="col2 pic-container">
+					<img src="img/slide8_blank.png" class="responsive">
+						<div class="cloudback"><img src="img/slide8_symbol.png" class="responsive"></div>
+
+						<div class="packet1"><img src="img/slide8_packet.png" class="responsive"></div>
+						<div class="packet2"><img src="img/slide8_packet.png" class="responsive"></div>
+						<div class="packet3"><img src="img/slide8_packet.png" class="responsive"></div>
+
+						<div class="cloud"><img src="img/slide8_cloud.png" class="responsive"></div>
+						<div class="contact1"><img src="img/slide8_user1.png" class="responsive"></div>
+						<div class="contact2"><img src="img/slide8_user2.png" class="responsive"></div>
+						<div class="contact3"><img src="img/slide8_user3.png" class="responsive"></div>
+
+					</div>
+
+
+
+				</div>
+			</div>
+		</div>
+		<!-- -------------------------------------------------------------------------- -->
+		<div id="slide-9" class="infographic-slide fullscreen-background" data-deepilink="slide-9" data-title="Contribute your data">
+			<div class="centered">
+				<div class="holder">
+					<div class="videoWrapper">
+						<iframe src="http://player.vimeo.com/video/85967559" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<!-- -------------------------------------------------------------------------- -->
+		<div id="slide-10" class="infographic-slide fullscreen-background" data-deepilink="slide-10" data-title="Visualize">
+			<div class="centered">
+				<div class="heading">
+					<h2>Visualize</h2>
+				</div>
+				<div class="holder">
+					<div class="col1 text-container">
+						<p>Gain insights by visualizing data through graphs, charts, maps and infographics.</p>
+					</div><!--
+					<div class="diploma-container">
+						<div class="bgflag"><img src="img/slide9_bgflag.png" class="responsive"></div>
+						<div class="diploma"><img src="img/slide9_diploma.png" class="responsive"></div>
+					</div>-->
+				</div>
+			</div>
+		</div>
+		<!-- -------------------------------------------------------------------------- -->
+		<div id="slide-11" class="infographic-slide fullscreen-background" data-deepilink="slide-11" data-title="Visualize data">
+			<div class="centered">
+				<div class="holder">
+					<div class="videoWrapper">
+						<iframe src="http://player.vimeo.com/video/85967559" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- -------------------------------------------------------------------------- -->
+		<div id="slide-12" class="infographic-slide fullscreen-background" data-deepilink="slide-12" data-title="What's next">
+			<div class="centered">
+				<div class="heading">
+					<h2>What's next</h2>
+				</div>
+
+				<div class="holder">
+				<!--<div class="col1">
+						<div class="baloon">
+							<img src="img/slide12_dual.png" class="responsive">
+						</div>
+						<div class="dual-pipe">
+							<span class="dual-pipe1">&nbsp;</span>
+							<span class="dual-pipe2">&nbsp;</span>
+						</div>
+						<p class="dual-year">Some text goes here.</p>
+					</div>
+					<div class="col2 text-container">
+						<p>Some text goes here.</p>
+						<p>Some text goes here.</p>
+					</div>-->
+				</div>
+			</div>
+		</div>
+		<!-- -------------------------------------------------------------------------- -->
+		<div id="slide-13" class="infographic-slide fullscreen-background" data-deepilink="slide-13" data-title="HDX sponsors and partners">
+			<div class="centered">
+				<div class="heading">
+					<h2>Our sponsors and partners</h2>
+				</div>
+				<div class="holder">
+
+					<div class="col1 text-container">
+						<div class="photo1-container">
+							<img src="img/sponsor_ukaid.png" class="photo1 responsive">
+						</div>
+						<div class="photo4-container">
+							<img src="img/sponsor_hif.png" class="photo4 responsive">
+						</div>
+						<div class="photo7-container">
+							<img src="img/sponsor_frog.png" class="photo7 responsive">
+						</div>
+					</div>
+
+					<div class="col2 text-container">
+						<div class="photo2-container">
+							<img src="img/sponsor_sweden.png" class="photo2 responsive">
+						</div>
+						<div class="photo5-container">
+							<img src="img/sponsor_scrapperwiki.png" class="photo5 responsive">
+						</div>
+						<div class="photo8-container">
+							<img src="img/sponsor_nsts.png" class="photo8 responsive">
+						</div>
+					</div>
+
+					<div class="col3 text-container">
+						<div class="photo3-container">
+							<img src="img/sponsor_luxembourg.png" class="photo3 responsive">
+						</div>
+						<div class="photo6-container">
+							<img src="img/sponsor_okf.png" class="photo6 responsive">
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<!-- -------------------------------------------------------------------------- -->
+		<div id="slide-14" class="infographic-slide fullscreen-background" data-deepilink="slide-14" data-title="Join us">
+			<div class="centered">
+				<div class="heading">
+					<h2>Join us</h2>
+				</div>
+
+				<div class="holder">
+					<div class="col1 text-container">
+						<p>Help build the HDX community by becoming a user, contributing data, and giving us feedback.</p>
+					</div>
+				</div>
+
+
+				<div class="holder">
+					<div class="col1a text-container">
+						<p><a href="http://twitter.com/humdata" class="twitter"><span class="twittericon"></span>@humdata</a><br/><span class="hashtag">#HumanitarianData</span></p>
+					</div>
+
+					<div class="col2a text-container">
+						<p><a href="http://data.hdx.rwlabs.org/">data.hdx.rwlabs.org</a></p>
+					</div>
+				</div>
+
+
+				<div class="holder">
+					<div class="col1b">
+						<div class="photo1-container">
+							<a href="http://www.unocha.org/"><img src="img/slide14_ocha.png" class="responsive"></a>
+						</div>
+						<div class="text-container credit">
+							<p>A project by the United Nations Office for the Coordination of Humanitarian Affairs</p>
+						</div>
+						
+					</div>
+
+					<div class="col2b">
+						<div class="photo1-container">
+							<a href="http://data.hdx.rwlabs.org/"><img src="img/slide14_hdx.png" class="responsive"></a>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<!-- -------------------------------------------------------------------------- -->
+	</div>
+</div>
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	ga('create', 'UA-48221887-2', 'auto');
+	ga('send', 'pageview');
+</script>
+</body>
+</html>
