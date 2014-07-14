@@ -44,8 +44,7 @@ a > img{
 .responsive{max-width:100%;height:auto;} 
 .responsive-h{width:auto;height:100%;} 
 .rounded{-webkit-border-radius:50%;-moz-border-radius:50%;border-radius:50%;} 
-.heading{display:block;clear:both;float:left;width:100%;height:102px;} 
-.heading .badge{display:block;width:98px;height:98px;background-position:center center;background-repeat:no-repeat;background-image:url("img/kalfin_badge.png");padding:2px;border:2px solid #fff;position:absolute;} 
+.heading{display:block;clear:both;float:left;width:100%;height:4.5em;/*102px;*/} 
 .heading h2{font-size:250%;/*110%;*/ font-weight: normal; /*text-transform:uppercase;*/padding:0;margin:0;position:absolute;top:0;/*28px;*/left:0; text-align: left; /*120px;*/} 
 .infographic-slide {display:block;position:absolute;width:100%;height:100%;overflow:hidden;color:white;text-align:center;} 
 .infographic-slide:before {content:'';display:inline-block;height:100%;vertical-align:middle;margin-right:-0.25em;} 
