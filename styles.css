@@ -24,7 +24,9 @@ background-position:center center;background-repeat:no-repeat;background-image:u
 
 #header:hover img.biglogo{opacity:1;} 
 
-
+a > img{
+    border: none;
+}
 
 #navigation {position:absolute;z-index:5000;right:40px;margin-top:-80px;top:40%;} 
 #navigation ul {position:relative;list-style:none;width:20px;height:20px;} 
