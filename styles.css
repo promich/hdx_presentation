@@ -259,3 +259,28 @@ margin:6.5% auto 0 auto;}
 #slide-14 .col1b .photo1-container{margin: 0 0 2.5% 0;}
 #slide-14 .col2b {width:60% !important;margin: 2.5% 0 2.5% 0; text-align:right; float: right; display: inline;} 
 #slide-14 .text-container.credit {text-align:left;font-size: 50%;line-height:120%;} 
+
+
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) { 
+/* ipad STYLES GO HERE */
+#navigation li {margin-bottom:10px;} 
+}
+
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : portrait) { 
+/* ipad vertical STYLES GO HERE */ 
+
+
+#wrapper {padding-bottom: 50px;}
+
+#slide-1 {background-color:#333333;background-image:url("img/slide1_bg.png");background-position:bottom center;padding-bottom:50px;}
+
+
+#infographic {height:100%!important;} 
+
+}
+
