@@ -73,8 +73,8 @@ a > img{
 #slide-1 .scroll-down{width:64px;height:64px;background-image:url("img/slide1_arrow_down.png");cursor:pointer;position:relative;
 margin:6.5% auto 0 auto;} 
 #slide-1 h1{color:#a9a9a9;font-size:175%; font-weight:normal;text-align:center;margin:6.5% 13% 0 13%;} 
-.mouse {position:absolute;bottom:0;left:0;} 
-.skip {position:absolute;bottom:0;right:0;} 
+.mouse {position:absolute;bottom:0;left:0;max-width:40%;} 
+.skip {position:absolute;bottom:0;right:0;max-width:40%;} 
 
 #slide-2 {background-color:#282828;background-image:url("img/slide1_bg.png");background-position:bottom center;} 
 #slide-2 .text-container{font-size:100%;text-align:left;margin:6% 0 0 0;} 
@@ -259,3 +259,46 @@ margin:6.5% auto 0 auto;}
 #slide-14 .col1b .photo1-container{margin: 0 0 2.5% 0;}
 #slide-14 .col2b {width:60% !important;margin: 2.5% 0 2.5% 0; text-align:right; float: right; display: inline;} 
 #slide-14 .text-container.credit {text-align:left;font-size: 50%;line-height:120%;} 
+
+
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) { 
+/* ipad STYLES GO HERE */
+#navigation li {margin-bottom:10px;} 
+}
+
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : portrait) { 
+/* ipad vertical STYLES GO HERE */ 
+
+	#wrapper {padding-bottom: 50px;}
+	#slide-1 {}
+	#infographic {} 
+
+}
+
+
+
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 568px) { /* STYLES GO HERE */}
+
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 568px) 
+and (orientation : landscape) { 
+/*iPhone 5 in landscape  STYLES GO HERE */
+
+}
+
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 568px) 
+and (orientation : portrait) { 
+/* iPhone 5 in portraitSTYLES GO HERE */ 
+
+
+}
