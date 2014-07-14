@@ -128,6 +128,7 @@
 				$count3.text( "1,200" );
 			}}, "manAnim3" );
 
+
 			//SLIDE 5
 			var $slide5 = $("#slide-5");
 			var s5t = new TimelineMax({paused: true});
@@ -153,9 +154,9 @@
 
 //create nested timeline
 child1 = new TimelineMax({repeat: -1});
-child1.fromTo($sixinner1, 5, {rotation:0}, {rotation:-359, ease:Linear.easeNone});
+child1.fromTo($sixinner1, 5, {rotation:0, ease:Linear.easeNone}, {rotation:-359, ease:Linear.easeNone});
 
-			s6t.add(child1),( new TimelineMax({repeat: -1}).fromTo($sixring, 25, {rotation:0}, {rotation:359, ease:Linear.easeNone}) );
+			s6t.add(child1),( new TimelineMax({repeat: -1}).fromTo($sixring, 25, {rotation:0, ease:Linear.easeNone}, {rotation:359, ease:Linear.easeNone}) );
 
 
 			//SLIDE 7
