@@ -35,7 +35,8 @@
 		animations           : [],
 
 		//callbacks, when slide finish executing
-		onSlideFinish        : false
+		onSlideFinish        : false,
+		actionOnSlideChange	 : function(slide_id) { }
 	};
 
 	function KalfinSlides(element, options)
@@ -93,6 +94,11 @@
 		{
 			var self = this;
 			self.onImagesLoaded();
+			
+			if (this.settings.actionOnSlideChange)
+			{
+				this.settings.actionOnSlideChange( this.currentSlideIndex );
+			}
 		},
 
 		onImagesLoaded: function()
@@ -393,6 +399,11 @@
 		{
 			this.animations[this.prevSlideIndex].play(0).pause();
 			this.animations[ this.currentSlideIndex ].play(0);
+			
+			if (this.settings.actionOnSlideChange)
+			{
+				this.settings.actionOnSlideChange( this.currentSlideIndex );
+			}
 		},
 
 		updateUI: function()
