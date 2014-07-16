@@ -20,7 +20,6 @@
 	<script type="text/javascript">
 		$(function()
 		{
-
 			var $infoGraphic = $("#infographic");
 
 			function triggerRepaint(){
@@ -45,9 +44,24 @@
 
 			//SLIDE 3
 			var $slide3 = $("#slide-3");
+			var $manImg = $slide3.find(".man img");
+			var manCounter = {
+				man: 0
+			}
+			var $bManContainer = $slide3.find(".bman-container");
+			var $bMan = $slide3.find(".bman");
 			var s3t = new TimelineMax({paused: true});
+			s3t.call(function(){
+				s3t.set(manCounter, {man:0});
+				TweenMax.set( $bMan.find("img"), {left: 0} );
+			});
 			s3t.from( $slide3.find(".centered"), 0.3, {autoAlpha:0} );
+			s3t.from( $slide3.find(".text-container"), 0.4, {autoAlpha:0} );
+			s3t.from( $slide3.find(".waitingroom"), 0.6, {autoAlpha:0} );
 			s3t.from( $bManContainer, 1, {autoAlpha:0}, "manAnim" );
+			s3t.add( new TimelineMax({repeat:-1, repeatDelay:3, onStart: triggerRepaint}).to( $bMan.find("img"), 1, {left: "-100%"}  ) , "manAnim" );
+			s3t.add( new TimelineMax({repeat:-1, repeatDelay:3, onStart: triggerRepaint}).add( TweenMax.allFromTo( $manImg, 1, {left:0}, {left:"-100%"} ) ) , "manAnim");
+
 
 
 			//SLIDE 4
@@ -103,6 +117,7 @@
 				$count3.text( "1,200" );
 			}}, "manAnim3" );
 
+
 			//SLIDE 5
 			var $slide5 = $("#slide-5");
 			var s5t = new TimelineMax({paused: true});
@@ -128,9 +143,9 @@
 
 //create nested timeline
 child1 = new TimelineMax({repeat: -1});
-child1.fromTo($sixinner1, 5, {rotation:0}, {rotation:-359, ease:Linear.easeNone});
+child1.fromTo($sixinner1, 5, {rotation:0, ease:Linear.easeNone}, {rotation:-359, ease:Linear.easeNone});
 
-			s6t.add(child1),( new TimelineMax({repeat: -1}).fromTo($sixring, 25, {rotation:0}, {rotation:359, ease:Linear.easeNone}) );
+			s6t.add(child1),( new TimelineMax({repeat: -1}).fromTo($sixring, 25, {rotation:0, ease:Linear.easeNone}, {rotation:359, ease:Linear.easeNone}) );
 
 
 			//SLIDE 7
@@ -245,6 +260,7 @@ child3.fromTo($packet3, 1.75, {left: "45%", top: "22.5%", easing: Linear.easeNon
 					s1t, s2t, s3t, s4t, s5t, s6t, s7t, s8t, s9t, s10t, s11t, s12t, s13t, s14t
 				]
 			});
+
 			$("#slide-1").css("z-index","1000");
 
 		});
@@ -257,7 +273,7 @@ child3.fromTo($packet3, 1.75, {left: "45%", top: "22.5%", easing: Linear.easeNon
 	<p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
 <![endif]-->
 <div id="wrapper">
-	<div id="header"><div id="header-inner"><a href="http://data.hdx.rwlabs.org/"><img src="img/header.png" class="biglogo" alt=""></a></div></div>
+	<div id="header"><div id="header-inner"><a href="http://data.hdx.rwlabs.org/"><img src="img/header.png" class="biglogo"/></a></div></div>
 	<div id="navigation"></div>
 	<div id="infographic">
 
@@ -289,7 +305,6 @@ child3.fromTo($packet3, 1.75, {left: "45%", top: "22.5%", easing: Linear.easeNon
 					<!-- <iframe src="http://player.vimeo.com/video/100313924?title=0&amp;byline=0&amp;portrait=0" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> -->
 
 				</div>
-
 
 				</div>
 			</div>
@@ -401,7 +416,7 @@ child3.fromTo($packet3, 1.75, {left: "45%", top: "22.5%", easing: Linear.easeNon
 	
 					<div class="col2 pic-container">
 					<img src="img/slide8_blank.png" class="responsive">
-						<div class="cloudback"><img src="img/slide8_shape.png" class="responsive"></div>
+						<div class="cloudback"><img src="img/slide8_symbol.png" class="responsive"></div>
 
 						<div class="packet1"><img src="img/slide8_packet.png" class="responsive"></div>
 						<div class="packet2"><img src="img/slide8_packet.png" class="responsive"></div>
@@ -552,7 +567,8 @@ child3.fromTo($packet3, 1.75, {left: "45%", top: "22.5%", easing: Linear.easeNon
 
 					<div class="col2a text-container">
 
-						<p>Enter site: <a href="http://data.hdx.rwlabs.org/">data.hdx.rwlabs.org</a></p>
+						<p>Enter site:</p>
+						<p><a href="http://data.hdx.rwlabs.org/">data.hdx.rwlabs.org</a></p>
 					</div>
 				</div>
 
