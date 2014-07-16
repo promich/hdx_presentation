@@ -45,24 +45,9 @@
 
 			//SLIDE 3
 			var $slide3 = $("#slide-3");
-			var $manImg = $slide3.find(".man img");
-			var manCounter = {
-				man: 0
-			}
-			var $bManContainer = $slide3.find(".bman-container");
-			var $bMan = $slide3.find(".bman");
 			var s3t = new TimelineMax({paused: true});
-			s3t.call(function(){
-				s3t.set(manCounter, {man:0});
-				TweenMax.set( $bMan.find("img"), {left: 0} );
-			});
 			s3t.from( $slide3.find(".centered"), 0.3, {autoAlpha:0} );
-			s3t.from( $slide3.find(".text-container"), 0.4, {autoAlpha:0} );
-			s3t.from( $slide3.find(".waitingroom"), 0.6, {autoAlpha:0} );
 			s3t.from( $bManContainer, 1, {autoAlpha:0}, "manAnim" );
-			s3t.add( new TimelineMax({repeat:-1, repeatDelay:3, onStart: triggerRepaint}).to( $bMan.find("img"), 1, {left: "-100%"}  ) , "manAnim" );
-			s3t.add( new TimelineMax({repeat:-1, repeatDelay:3, onStart: triggerRepaint}).add( TweenMax.allFromTo( $manImg, 1, {left:0}, {left:"-100%"} ) ) , "manAnim");
-
 
 
 			//SLIDE 4
